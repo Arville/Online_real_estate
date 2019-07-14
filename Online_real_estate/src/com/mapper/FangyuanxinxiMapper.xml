@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.FangyuanxinxiMapper">
+  <resultMap id="BaseResultMap" type="com.entity.Fangyuanxinxi">
+    <id column="id" jdbcType="INTEGER" property="id" />
+	<result column="bianhao" jdbcType="VARCHAR" property="bianhao" />
+    <result column="guihuaqu" jdbcType="VARCHAR" property="guihuaqu" />
+    <result column="loupanming" jdbcType="VARCHAR" property="loupanming" />
+    <result column="shoujia" jdbcType="VARCHAR" property="shoujia" />
+    <result column="biaoti" jdbcType="VARCHAR" property="biaoti" />
+    <result column="zhanshizhaopian" jdbcType="VARCHAR" property="zhanshizhaopian" />
+    <result column="huxing" jdbcType="VARCHAR" property="huxing" />
+    <result column="louceng" jdbcType="VARCHAR" property="louceng" />
+    <result column="mianji" jdbcType="VARCHAR" property="mianji" />
+    <result column="huxingjiegou" jdbcType="VARCHAR" property="huxingjiegou" />
+    <result column="jianzhuleixing" jdbcType="VARCHAR" property="jianzhuleixing" />
+    <result column="jianzhujiegou" jdbcType="VARCHAR" property="jianzhujiegou" />
+    <result column="chaoxiang" jdbcType="VARCHAR" property="chaoxiang" />
+    <result column="zhuangxiu" jdbcType="VARCHAR" property="zhuangxiu" />
+    <result column="tihubili" jdbcType="VARCHAR" property="tihubili" />
+    <result column="peibeidianti" jdbcType="VARCHAR" property="peibeidianti" />
+    <result column="chanquannianxian" jdbcType="VARCHAR" property="chanquannianxian" />
+    <result column="jiaoyiquanshu" jdbcType="VARCHAR" property="jiaoyiquanshu" />
+    <result column="fangwuyongtu" jdbcType="VARCHAR" property="fangwuyongtu" />
+    <result column="fangwunianxian" jdbcType="VARCHAR" property="fangwunianxian" />
+    <result column="chanquansuoshu" jdbcType="VARCHAR" property="chanquansuoshu" />
+    <result column="diyaxinxi" jdbcType="VARCHAR" property="diyaxinxi" />
+    <result column="fabushijian" jdbcType="VARCHAR" property="fabushijian" />
+    
+  </resultMap>
+  
+  
+  
+  <sql id="Base_Column_List">
+    bianhao,guihuaqu,loupanming,shoujia,biaoti,zhanshizhaopian,huxing,louceng,mianji,
+    huxingjiegou,jianzhuleixing,jianzhujiegou,chaoxiang,zhuangxiu,tihubili,peibeidianti,
+    chanquannianxian,jiaoyiquanshu,fangwuyongtu,fangwunianxian,chanquansuoshu,diyaxinxi,
+    fabushijian
+  </sql>
+  
+  
+  <insert id="insertFyxx" parameterType="java.util.Map">
+  	insert into fangyuanxinxi(<include refid="Base_Column_List" />)
+  	values (
+  	#{bianhao},#{guihuaqu},#{loupanming},#{shoujia},#{biaoti},
+  	#{zhanshizhaopian},#{huxing},#{louceng},#{mianji},#{huxingjiegou},
+  	#{jianzhuleixing},#{jianzhujiegou},#{chaoxiang},#{zhuangxiu},#{tihubili},#{peibeidianti},
+  	#{chanquannianxian},#{jiaoyiquanshu},#{fangwuyongtu},#{fangwunianxian},#{chanquansuoshu},
+  	#{diyaxinxi},#{fabushijian}
+  	)
+  </insert>
+  
+  <insert id="insertFytp" parameterType="java.util.Map">
+  	insert into fangyuantupian (bianhao,tupian,tupian2)
+  	values (#{bianhao},#{tupian},#{tupian2})
+  </insert>
+  
+  <update id="updateFyxx" parameterType="java.util.Map">
+  	UPDATE fangyuanxinxi SET bianhao=#{bianhao},guihuaqu=#{guihuaqu},loupanming=#{loupanming},
+  	shoujia=#{shoujia},biaoti=#{biaoti},zhanshizhaopian=#{zhanshizhaopian},huxing=#{huxing},
+  	louceng=#{louceng},mianji=#{mianji},huxingjiegou=#{huxingjiegou},
+  	jianzhuleixing=#{jianzhuleixing},jianzhujiegou=#{jianzhujiegou},chaoxiang=#{chaoxiang},
+  	zhuangxiu=#{zhuangxiu},tihubili=#{tihubili},peibeidianti=#{peibeidianti},
+  	chanquannianxian=#{chanquannianxian},jiaoyiquanshu=#{jiaoyiquanshu},fangwuyongtu=#{fangwuyongtu},
+  	fangwunianxian=#{fangwunianxian},chanquansuoshu=#{chanquansuoshu},
+  	diyaxinxi=#{diyaxinxi} WHERE bianhao=#{bianhao}
+  </update>
+  
+  <delete id="deleteFyxx" parameterType="java.util.Map">
+  	delete from fangyuanxinxi where bianhao=#{delete_info}
+  </delete>
+  
+  <insert id="insertFabu" parameterType="java.util.Map">
+  	insert into fabu (xiaoqu,dizhi,chenghu,tel,chuli,jiage) 
+  	values(#{xiaoqu},#{dizhi},#{chenghu},#{tel},#{chuli},#{jiage})
+  </insert>
+  
+  <delete id="deleteFytp" parameterType="java.lang.String">
+  	delete from fangyuantupian where bianhao=#{bianhao}
+  </delete>
+  
+   <select id="getCount"   resultType="int" >
+    select  count(*) from fangyuanxinxi  where 1=1
+  </select> 
+  
+   <select id="getCountByCondition" parameterType="java.util.Map"  resultType="int" >
+   select count(*) from fangyuanxinxi 
+ 	where LOCATE(#{keyword,jdbcType=VARCHAR},biaoti)>0
+ 	or LOCATE(#{keyword,jdbcType=VARCHAR},guihuaqu)>0
+ 	or LOCATE(#{keyword,jdbcType=VARCHAR},loupanming)>0
+  </select> 
+  
+  <select id="getGuanzhurenshu"   resultType="int" parameterType="java.lang.String" >
+    select  count(*) from guanzhu  where bianhao=#{bianhao}
+  </select>
+  
+  <insert id="insertFankui" parameterType="java.util.Map">
+  	insert into fankui (gonghao,bianhao,feedback) 
+  	values (#{gonghao},#{bianhao},#{feedback})
+  </insert>
+  
+  <select id="recommendGuanzhu_dis" resultType="java.lang.String">
+  	select distinct ufid from guanzhu
+  </select>
+  
+  <select id="selectupdateFankui" parameterType="java.util.Map" resultType="com.entity.Fankui"> 
+  	select gonghao,bianhao,feedback from fankui where gonghao=#{gonghao} and bianhao=#{bianhao}
+  </select>
+  
+  <select id="selectRadom" parameterType="java.lang.String" resultType="com.entity.Fangyuanxinxi">
+  	select * from fangyuanxinxi 
+  	where bianhao not in(#{bianhao})
+  	limit 0,4
+  </select>
+  
+  <update id="updateFankui" parameterType="java.util.Map">
+  	UPDATE fankui
+  	<set>
+  		<if test="bianhao!=null">bianhao=#{bianhao}</if>
+  		<if test="feedback!=null">,feedback=#{feedback}</if>
+  	</set>
+  	<where>
+  		<if test="gonghao!=null">gonghao=#{gonghao}</if>
+  	   <if test="bianhao!=null">and bianhao=#{bianhao}</if>
+  	</where>
+  </update>
+  
+  <delete id="deleteFankui">
+  	DELETE from fankui 
+  	<where>
+  		<if test="gonghao!=null">gonghao=#{gonghao}</if>
+  	   <if test="bianhao!=null">and bianhao=#{bianhao}</if>
+  	</where>
+  </delete>
+  
+  <insert id="insertKanfangjilu" parameterType="java.util.Map">
+  	insert into kanfang(gonghao,bianhao,kfsj) 
+  	values(#{gonghao},#{bianhao},#{kfsj})
+  </insert>
+  
+  <update id="updateKanfangjilu" parameterType="java.util.Map">
+  	update kanfang set bianhao=#{bianhao},kfsj=#{kfsj} where bianhao=#{bianhao} and gonghao=#{gonghao}
+  </update>
+  
+  <delete id="deleteKanfangjilu" parameterType="java.util.Map">
+  	delete from kanfang where gonghao=#{gonghao} and bianhao=#{bianhao} and kfsj=#{kfsj}
+  </delete>
+  
+  <select id="selectKanfangjilu" parameterType="java.util.Map"  resultType="com.entity.Kanfang">
+  	select * from kanfang where gonghao=#{gonghao} and bianhao=#{bianhao}
+  </select>
+  
+  <insert id="insertGuanzhu" parameterType="java.util.Map">
+  	insert into guanzhu (ufid,bianhao) 
+  	values (#{ufid},#{bianhao})
+  </insert>
+  
+  <delete id="killGuanzhu" parameterType="java.util.Map">
+        delete from guanzhu where ufid=#{ufid} and bianhao=#{bianhao}
+    </delete>
+  
+  <delete id="deleteFyGuanzhu" parameterType="java.lang.String">
+  	delete from guanzhu where bianhao=#{bianhao}
+  </delete>
+  
+  <update id="updateFabubychuli0" parameterType="java.util.Map">
+  	update fabu set chuli=1 where id=#{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectUncheckFy" parameterType="java.util.Map" resultType="com.entity.Fabu">
+  	select * from fabu where chuli=0 limit #{beginIndex},#{pageSize}
+  </select>
+  
+  <select id="selectCountUncheckFy" resultType="int">
+  	select COUNT(*) from fabu where chuli=0
+  </select>
+  
+  <select id="Findguanzhu" parameterType="java.util.Map" resultType="com.entity.Guanzhu">
+  	  select ufid,bianhao from guanzhu where ufid=#{ufid} and bianhao=#{bianhao}
+  </select>
+  
+  <select id="FindCountguanzhuByufid" parameterType="java.util.Map" resultType="int">
+  	  select COUNT(*) from guanzhu where ufid=#{ufid}
+  </select>
+  
+  <select id="getFyxxByGuihuaqi" parameterType="java.util.Map" resultType="com.entity.Fangyuanxinxi">
+  	select * from fangyuanxinxi where guihuaqu=#{guihuaqu} and  bianhao NOT IN (#{bianhao}) limit 0,4
+  </select>
+  
+  <select id="FindguanzhuByufid" parameterType="java.util.Map" resultType="java.lang.String">
+  	  select bianhao from guanzhu where ufid=#{ufid} limit #{beginIndex},#{pageSize}
+  </select>
+  
+  <select id="recommendGuanzhu_bh" parameterType="java.lang.String" resultType="java.lang.String">
+  	  select bianhao from guanzhu where ufid=#{ufid} 
+  </select>
+  
+  <select id="recommendGuanzhurenshu" resultType="int">
+  	select count(distinct ufid) from guanzhu
+  </select>
+  
+  <select id="getFyxxByKeyword" parameterType="java.util.Map"  resultType="com.entity.Fangyuanxinxi" >
+ 	select <include refid="Base_Column_List" /> from fangyuanxinxi 
+ 	where LOCATE(#{keyword,jdbcType=VARCHAR},biaoti)>0
+ 	or LOCATE(#{keyword,jdbcType=VARCHAR},guihuaqu)>0
+ 	or LOCATE(#{keyword,jdbcType=VARCHAR},loupanming)>0
+ 	limit #{beginIndex},#{pageSize}
+  </select>
+  
+  <select id="getFyxxByUpdateByCount" parameterType="java.util.Map"  resultType="int" >
+ 	select COUNT(*) from fangyuanxinxi 
+ 	where LOCATE(#{keyword,jdbcType=VARCHAR},bianhao)>0
+ 	or LOCATE(#{keyword,jdbcType=VARCHAR},biaoti)>0
+ 	limit #{beginIndex},#{pageSize}
+  </select>
+  
+  <select id="getFyxxByUpdate" parameterType="java.util.Map"  resultType="com.entity.Fangyuanxinxi" >
+ 	select <include refid="Base_Column_List" /> from fangyuanxinxi 
+ 	where LOCATE(#{keyword,jdbcType=VARCHAR},bianhao)>0
+ 	or LOCATE(#{keyword,jdbcType=VARCHAR},biaoti)>0
+ 	limit #{beginIndex},#{pageSize}
+  </select>
+  
+  <select id="getFytpByUpdate" parameterType="java.lang.String" resultType="java.lang.String">
+  	select tupian2 from fangyuantupian where bianhao=#{bianhao}
+  </select>
+  
+  <select id="getFyxxByKeywordOrderTime" parameterType="java.util.Map"  resultType="com.entity.Fangyuanxinxi" >
+ 	select <include refid="Base_Column_List" /> from fangyuanxinxi 
+ 	where LOCATE(#{keyword,jdbcType=VARCHAR},biaoti)>0
+ 	or LOCATE(#{keyword,jdbcType=VARCHAR},guihuaqu)>0
+ 	or LOCATE(#{keyword,jdbcType=VARCHAR},loupanming)>0
+ 	order by fabushijian desc
+ 	limit #{beginIndex},#{pageSize}
+  </select>
+  
+  <select id="getFangyuanxinxiByPage" resultType="com.entity.Fangyuanxinxi" parameterType="java.util.Map">
+  		select <include refid="Base_Column_List" /> from fangyuanxinxi limit #{beginIndex},#{pageSize}
+  </select>
+  
+  <select id="FindShaixuanCount" resultType="int" parameterType="java.util.Map">
+  		SELECT COUNT(*) from fangyuanxinxi f
+  		WHERE 1=1
+  		
+  			<if test="beginPrice!=null">
+  		 AND f.shoujia BETWEEN #{beginPrice} AND #{endPrice}
+  			</if>
+  			
+			<if test="roomtype1!=null and roomtype1.size()!=0">
+			AND 
+				<foreach item="item2" index="index" collection="roomtype1"  separator="OR"  >
+					`HUXING` LIKE CONCAT('%',#{item2},'%')
+				</foreach>
+			</if>
+			
+			<if test="position1!=null and position1.size()!=0">
+			AND f.guihuaqu IN 
+				<foreach item="item1" index="index" collection="position1" open="(" separator="," close=")"  >
+					#{item1}
+				</foreach>
+			</if>
+			
+			<if test="elevator1!=null and elevator1.size()!=0">
+			AND f.peibeidianti IN 
+				<foreach item="item3" index="index" collection="elevator1" open="(" separator="," close=")"  >
+					#{item3}
+				</foreach>
+			</if>
+			
+			<if test="decoration1!=null and decoration1.size()!=0">
+			AND f.zhuangxiu IN 
+				<foreach item="item4" index="index" collection="decoration1" open="(" separator="," close=")"  >
+					#{item4}
+				</foreach>
+			</if>
+			
+</select>
+  
+  <select id="FindShaixuanFyxx" resultType="com.entity.Fangyuanxinxi" parameterType="java.util.Map">
+  		SELECT <include refid="Base_Column_List" /> from fangyuanxinxi f
+  		WHERE 1=1
+  		
+  			<if test="beginPrice!=null">
+  		 AND f.shoujia BETWEEN #{beginPrice} AND #{endPrice}
+  			</if>
+  			
+			<if test="roomtype1!=null and roomtype1.size()!=0">
+			AND 
+				<foreach item="item2" index="index" collection="roomtype1"  separator="OR"  >
+					`HUXING` LIKE CONCAT('%',#{item2},'%')
+				</foreach>
+			</if>
+			
+			<if test="position1!=null and position1.size()!=0">
+			AND f.guihuaqu IN 
+				<foreach item="item1" index="index" collection="position1" open="(" separator="," close=")"  >
+					#{item1}
+				</foreach>
+			</if>
+			
+			<if test="elevator1!=null and elevator1.size()!=0">
+			AND f.peibeidianti IN 
+				<foreach item="item3" index="index" collection="elevator1" open="(" separator="," close=")"  >
+					#{item3}
+				</foreach>
+			</if>
+			
+			<if test="decoration1!=null and decoration1.size()!=0">
+			AND f.zhuangxiu IN 
+				<foreach item="item4" index="index" collection="decoration1" open="(" separator="," close=")"  >
+					#{item4}
+				</foreach>
+			</if>
+			
+LIMIT #{beginIndex},#{pageSize};
+</select>
+
+<select id="FindShaixuanFyxxByTime" resultType="com.entity.Fangyuanxinxi" parameterType="java.util.Map">
+  		SELECT <include refid="Base_Column_List" /> from fangyuanxinxi f
+  		WHERE 1=1
+  		
+  			<if test="beginPrice!=null">
+  		 AND f.shoujia BETWEEN #{beginPrice} AND #{endPrice}
+  			</if>
+  			
+			<if test="roomtype1!=null and roomtype1.size()!=0">
+			AND 
+				<foreach item="item2" index="index" collection="roomtype1"  separator="OR"  >
+					`HUXING` LIKE CONCAT('%',#{item2},'%')
+				</foreach>
+			</if>
+			
+			<if test="position1!=null and position1.size()!=0">
+			AND f.guihuaqu IN 
+				<foreach item="item1" index="index" collection="position1" open="(" separator="," close=")"  >
+					#{item1}
+				</foreach>
+			</if>
+			
+			<if test="elevator1!=null and elevator1.size()!=0">
+			AND f.peibeidianti IN 
+				<foreach item="item3" index="index" collection="elevator1" open="(" separator="," close=")"  >
+					#{item3}
+				</foreach>
+			</if>
+			
+			<if test="decoration1!=null and decoration1.size()!=0">
+			AND f.zhuangxiu IN 
+				<foreach item="item4" index="index" collection="decoration1" open="(" separator="," close=")"  >
+					#{item4}
+				</foreach>
+			</if>
+ORDER BY f.fabushijian DESC			
+LIMIT #{beginIndex},#{pageSize};
+</select>
+  
+  <select id="getFyxxByTime" resultType="com.entity.Fangyuanxinxi" parameterType="java.util.Map">
+  		select <include refid="Base_Column_List" /> from fangyuanxinxi order by fabushijian desc limit #{beginIndex},#{pageSize}
+  </select>
+  
+  <select id="getsyfangyuanxinxi1"   resultType="com.entity.Fangyuanxinxi" parameterType="java.util.Map" >
+    select   <include refid="Base_Column_List" /> from fangyuanxinxi  where 1=1
+    limit 0,8
+  </select>
+	
+  <select id="selectByBianhao" parameterType="java.lang.String" resultType="com.entity.Fangyuanxinxi">
+    select 
+    <include refid="Base_Column_List" />
+    from fangyuanxinxi
+    where bianhao = #{bianhao}
+  </select>
+  
+  <select id="selectTupianByBihao" parameterType="java.lang.String" resultType="com.entity.Fangyuantupian">
+  	select * from fangyuantupian where bianhao = #{bianhao}
+  </select>
+  
+  <select id="selectJingjirenByBihao" parameterType="java.lang.String" resultMap="JingjirenByFyjj">
+  	select j.gonghao,j.xingming,j.phone,j.touxiang from fyjj f,jingjiren j where f.gonghao=j.gonghao and f.bianhao=#{bianhao}
+  </select>
+  
+  <resultMap id="JingjirenByFyjj" type="com.entity.Jingjiren">
+    <result column="xingming" jdbcType="VARCHAR" property="xingming" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="touxiang" jdbcType="VARCHAR" property="touxiang" />
+  </resultMap>
+  
+  <select id="selectFkByBh" parameterType="java.lang.String" resultType="com.entity.Fkjj">
+  	select f.feedback,j.xingming,j.phone,j.touxiang from fankui f,jingjiren j where f.gonghao=j.gonghao and f.bianhao=#{bianhao}
+  </select>
+  
+  <resultMap id="Fankui" type="com.entity.Fkjj">
+  	<result column="xingming" jdbcType="VARCHAR" property="xingming" />
+  	<result column="phone" jdbcType="VARCHAR" property="phone" />
+  	<result column="touxiang" jdbcType="VARCHAR" property="touxiang" />
+  	<result column="feedback" jdbcType="VARCHAR" property="feedback" />
+  </resultMap>
+  
+  <select id="selectKfByBh" parameterType="java.lang.String" resultType="com.entity.Kfjj">
+  	select k.kfsj,COUNT(*) AS cishu,j.xingming,j.phone,j.touxiang from kanfang k,jingjiren j where k.gonghao=j.gonghao and k.bianhao=#{bianhao}
+  </select>
+  
+  <resultMap id="Kanfang" type="com.entity.Kfjj">
+  	<result column="xingming" jdbcType="VARCHAR" property="xingming" />
+  	<result column="phone" jdbcType="VARCHAR" property="phone" />
+  	<result column="kfsj" jdbcType="VARCHAR" property="kfsj" />
+  	<result column="cishu" jdbcType="VARCHAR" property="cishu" />
+  </resultMap>
+  
+  <insert id="insertFyjj" parameterType="java.util.Map">
+  	insert into fyjj(gonghao,bianhao)
+  	values(#{gonghao},#{bianhao})
+  </insert>
+  
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from fangyuanxinxi
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.entity.Fangyuanxinxi">
+    insert into fangyuanxinxi (id, bianhao,biaoti,fangxing,tingshi,louceng,mianji,youwudianti,shoujia,tupian,fabushijian,faburen,xingming,lianxifangshi,beizhu, addtime)
+    values (#{id,jdbcType=INTEGER}, #{bianhao,jdbcType=VARCHAR},#{biaoti,jdbcType=VARCHAR},#{fangxing,jdbcType=VARCHAR},#{tingshi,jdbcType=VARCHAR},#{louceng,jdbcType=VARCHAR},#{mianji,jdbcType=VARCHAR},#{youwudianti,jdbcType=VARCHAR},#{shoujia,jdbcType=VARCHAR},#{tupian,jdbcType=VARCHAR},#{fabushijian,jdbcType=VARCHAR},#{faburen,jdbcType=VARCHAR},#{xingming,jdbcType=VARCHAR},#{lianxifangshi,jdbcType=VARCHAR},#{beizhu,jdbcType=VARCHAR}, #{addtime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.entity.Fangyuanxinxi">
+    insert into fangyuanxinxi
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="bianhao != null"> bianhao, </if>
+      <if test="biaoti != null"> biaoti, </if>
+      <if test="fangxing != null"> fangxing, </if>
+      <if test="tingshi != null"> tingshi, </if>
+      <if test="louceng != null"> louceng, </if>
+      <if test="mianji != null"> mianji, </if>
+      <if test="youwudianti != null"> youwudianti, </if>
+      <if test="shoujia != null"> shoujia, </if>
+      <if test="tupian != null"> tupian, </if>
+      <if test="fabushijian != null"> fabushijian, </if>
+      <if test="faburen != null"> faburen, </if>
+      <if test="xingming != null"> xingming, </if>
+      <if test="lianxifangshi != null"> lianxifangshi, </if>
+      <if test="beizhu != null"> beizhu, </if>
+      
+      <if test="addtime != null">
+        addtime,
+      </if>
+      
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="bianhao != null"> #{bianhao,jdbcType=VARCHAR},</if>
+      <if test="biaoti != null"> #{biaoti,jdbcType=VARCHAR},</if>
+      <if test="fangxing != null"> #{fangxing,jdbcType=VARCHAR},</if>
+      <if test="tingshi != null"> #{tingshi,jdbcType=VARCHAR},</if>
+      <if test="louceng != null"> #{louceng,jdbcType=VARCHAR},</if>
+      <if test="mianji != null"> #{mianji,jdbcType=VARCHAR},</if>
+      <if test="youwudianti != null"> #{youwudianti,jdbcType=VARCHAR},</if>
+      <if test="shoujia != null"> #{shoujia,jdbcType=VARCHAR},</if>
+      <if test="tupian != null"> #{tupian,jdbcType=VARCHAR},</if>
+      <if test="fabushijian != null"> #{fabushijian,jdbcType=VARCHAR},</if>
+      <if test="faburen != null"> #{faburen,jdbcType=VARCHAR},</if>
+      <if test="xingming != null"> #{xingming,jdbcType=VARCHAR},</if>
+      <if test="lianxifangshi != null"> #{lianxifangshi,jdbcType=VARCHAR},</if>
+      <if test="beizhu != null"> #{beizhu,jdbcType=VARCHAR},</if>
+      
+      <if test="addtime != null">
+        #{addtime,jdbcType=VARCHAR},
+      </if>
+      
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.entity.Fangyuanxinxi">
+    update fangyuanxinxi
+    <set>
+	  <if test="bianhao != null"> bianhao = #{bianhao,jdbcType=VARCHAR},</if>
+      <if test="biaoti != null"> biaoti = #{biaoti,jdbcType=VARCHAR},</if>
+      <if test="fangxing != null"> fangxing = #{fangxing,jdbcType=VARCHAR},</if>
+      <if test="tingshi != null"> tingshi = #{tingshi,jdbcType=VARCHAR},</if>
+      <if test="louceng != null"> louceng = #{louceng,jdbcType=VARCHAR},</if>
+      <if test="mianji != null"> mianji = #{mianji,jdbcType=VARCHAR},</if>
+      <if test="youwudianti != null"> youwudianti = #{youwudianti,jdbcType=VARCHAR},</if>
+      <if test="shoujia != null"> shoujia = #{shoujia,jdbcType=VARCHAR},</if>
+      <if test="tupian != null"> tupian = #{tupian,jdbcType=VARCHAR},</if>
+      <if test="fabushijian != null"> fabushijian = #{fabushijian,jdbcType=VARCHAR},</if>
+      <if test="faburen != null"> faburen = #{faburen,jdbcType=VARCHAR},</if>
+      <if test="xingming != null"> xingming = #{xingming,jdbcType=VARCHAR},</if>
+      <if test="lianxifangshi != null"> lianxifangshi = #{lianxifangshi,jdbcType=VARCHAR},</if>
+      <if test="beizhu != null"> beizhu = #{beizhu,jdbcType=VARCHAR},</if>
+      
+      <if test="addtime != null">
+        addtime = #{addtime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+  <update id="updateByPrimaryKey" parameterType="com.entity.Fangyuanxinxi">
+    update fangyuanxinxi
+    set bianhao = #{bianhao,jdbcType=VARCHAR},biaoti = #{biaoti,jdbcType=VARCHAR},fangxing = #{fangxing,jdbcType=VARCHAR},tingshi = #{tingshi,jdbcType=VARCHAR},louceng = #{louceng,jdbcType=VARCHAR},mianji = #{mianji,jdbcType=VARCHAR},youwudianti = #{youwudianti,jdbcType=VARCHAR},shoujia = #{shoujia,jdbcType=VARCHAR},tupian = #{tupian,jdbcType=VARCHAR},fabushijian = #{fabushijian,jdbcType=VARCHAR},faburen = #{faburen,jdbcType=VARCHAR},xingming = #{xingming,jdbcType=VARCHAR},lianxifangshi = #{lianxifangshi,jdbcType=VARCHAR},beizhu = #{beizhu,jdbcType=VARCHAR},  addtime = #{addtime,jdbcType=VARCHAR} where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

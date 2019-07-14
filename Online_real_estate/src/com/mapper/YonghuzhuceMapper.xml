@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.YonghuzhuceMapper">
+  
+  <sql id="Yonghu_Column_List">
+  	username,password,tel,ufid,touxiang,touxiang2
+  </sql>
+  <insert id="insertYonghu" parameterType="com.entity.Yonghu">
+    insert into yonghu (<include refid="Yonghu_Column_List" />)
+    values (#{username},#{password},#{tel},#{ufid},#{touxiang},#{touxiang2})
+  </insert>
+  
+  <select id="selectYonghu" parameterType="java.util.Map" resultType="com.entity.Yonghu">
+  	select <include refid="Yonghu_Column_List" /> from yonghu where 
+  	username=#{username} and password=#{password}
+  </select>
+	
+	<select id="selectBuUsername" parameterType="java.lang.String" resultType="com.entity.Yonghu">
+		select * from yonghu where username=#{username}
+	</select>
+	
+  <select id="selectGuanzhufangyuan" parameterType="java.lang.String" resultType="com.entity.Fangyuanxinxi">
+  	select * from fangyuanxinxi
+  	where bianhao=#{bianhao}
+  </select>
+  
+  <select id="selectBianhao" parameterType="java.lang.String" resultType="java.lang.String">
+  	select bianhao from guanzhu
+  	where ufid=#{ufid}
+  	limit #{beginIndex},#{pageSize}
+  </select>
+  
+  <select id="selecCounttBianhao" parameterType="java.lang.String" resultType="int">
+  	select count(*) from guanzhu
+  	where ufid=#{ufid}
+  </select>
+  
+</mapper>

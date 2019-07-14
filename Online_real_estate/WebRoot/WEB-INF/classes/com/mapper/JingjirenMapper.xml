@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.JingjirenMapper">
+<select id="selectJinjiren" parameterType="java.util.Map" resultType="com.entity.Jingjiren">
+	select * from jingjiren where zhanghao=#{zhanghao} and mima=#{mima}
+</select>
+
+<select id="selectFyjjr" parameterType="java.lang.String" resultType="com.entity.Fangyuanxinxi">
+	select f.* from fangyuanxinxi f,fyjj j where f.bianhao=j.bianhao and j.gonghao=#{gonghao}
+</select>
+</mapper>

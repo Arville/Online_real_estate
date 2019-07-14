@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  <!--  XML 配置文件包含对 MyBatis 系统的核心设置 -->
+<configuration>
+	<settings>
+		<!-- 要使延迟加载生效必须配置下面两个属性 -->
+		<setting name="lazyLoadingEnabled" value="true"/>
+		<setting name="aggressiveLazyLoading" value="false"/>
+	</settings>
+	
+  <!-- mappers告诉了MyBatis去哪里找持久化类的映射文件 -->
+  <mappers>
+   <mapper  resource="com/mapper/YonghuzhuceMapper.xml"/>
+   <mapper  resource="com/mapper/XinwentongzhiMapper.xml"/>
+   <mapper  resource="com/mapper/PinglunMapper.xml"/>
+   <mapper  resource="com/mapper/ShoucangjiluMapper.xml"/>
+   <mapper  resource="com/mapper/LiuyanbanMapper.xml"/>
+   <mapper  resource="com/mapper/YouqinglianjieMapper.xml"/>
+   <mapper  resource="com/mapper/FangyuanxinxiMapper.xml"/>
+   <mapper  resource="com/mapper/JingjirenMapper.xml"/>
+   <mapper  resource="com/mapper/KanfangMapper.xml"/>
+   <mapper  resource="com/mapper/JiaoliuMapper.xml"/>
+   </mappers>
+</configuration>

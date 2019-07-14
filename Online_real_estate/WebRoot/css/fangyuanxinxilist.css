@@ -1,0 +1,196 @@
+.margin_1{
+	width: 1200px;
+	height: 175px;
+	margin-top: 35px;
+}
+.margin_3{
+	margin-top: 30px;
+}
+.margin_2{
+	margin-bottom: 15px;
+}
+.margin_2 span{
+	font-size: 14px;
+}
+.margin_2 a{
+	font-size: 22px;
+	font-weight: bolder;
+	text-decoration: none;
+}
+.margin_2 a:hover{
+	text-decoration: none;
+}
+.tiaojian{
+	margin-top: 10px;
+}
+.biaoqian{
+	font-weight: bolder;
+	font-size: 15px;
+}
+.jutitiaojian{
+	font-size: 13px;
+}
+.float_1{
+	float: left;
+	margin-right: 60px;
+	width: 232px;
+	height: 174px;
+}
+.float_1 img{
+	width: 100%;
+	height: 100%;
+}
+.float_2{
+	float: left;
+	margin-right: 10px;
+	width: 500px;
+	height: 174px;
+}
+.float_3{
+	float: left;
+	width: 100px;
+	height: 50px;
+}
+.float_3 a{
+	font-size:14px;
+	font-weight: bolder;
+	color: green;
+}
+.float_3 a:hover{
+	text-decoration: none;
+}
+.f2_f3{
+	float: left;
+}
+.float_4{
+	float: left;
+	width: auto;
+	height: auto;
+}
+.font1{
+	font-weight: bold;
+    font-size: 26px;
+    font-family: 'tahoma';
+	color: #db4c3f;
+}
+.pagination-outer{ text-align: center; }
+		.pagination{
+		    font-family: 'Rubik', sans-serif;
+		    display: inline-flex;
+		    position: relative;
+		}
+		.pagination li a.page-link{
+		    color: #10ac84;
+		    background-color: transparent;
+		    font-size: 22px;
+		    font-weight: 500;
+		    line-height: 28px;
+		    height: 40px;
+		    width: 40px;
+		    margin: 0 5px 10px;
+		    border: none;
+		    border-radius: 0;
+		    overflow: hidden;
+		    position: relative;
+		    transition: all 0.4s ease 0s;
+		}
+		.pagination li.active a.page-link,
+		.pagination li a.page-link:hover,
+		.pagination li.active a.page-link:hover{
+		    color: #fff;
+		    background-color: #10ac84;
+		}
+		.pagination li:first-child a.page-link:hover,
+		.pagination li:last-child a.page-link:hover{
+		    box-shadow: 0 0 10px rgba(0,0,0,0.9);
+		}
+		.pagination li a.page-link:before{
+		    content: attr(data-hover);
+		    color: rgba(255,255,255,0.2);
+		    font-size: 80px;
+		    font-weight: 700;
+		    height: 100%;
+		    width: 100%;
+		    opacity: 1;
+		    position: absolute;
+		    top: 100%;
+		    left: 0;
+		    transition: all 0.3s ease 0s;
+		}
+		.pagination li a.page-link:hover:before,
+		.pagination li.active a.page-link:before{
+		    opacity: 1;
+		    top: 10px;
+		}
+		@media only screen and (max-width: 480px){
+		    .pagination{ display: block; }
+		    .pagination li{
+		        margin-bottom: 10px;
+		        display: inline-block;
+		    }
+		}
+.cls {
+	clear: both;
+}
+.menu {
+	height: 40px;
+	display: block;
+	padding: 0px;
+	width: 380px;
+}
+
+.menu ul {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+}
+
+.menu ul li {
+	/* width and height of the menu items */  
+			float: left;
+	overflow: hidden;
+	position: relative;
+	line-height: 40px;
+	text-align: center;
+}
+
+.menu ul li a {
+			/* must be postioned relative  */ 
+			position: relative;
+			display: block;
+			width: 90px;
+			height: 40px;
+			font-size: 14px;
+			font-family:"微软雅黑";
+			text-decoration: none;
+			cursor: pointer;
+}
+
+.menu ul li a span {
+			/* all layers will be absolute positioned */
+			position: absolute;
+			left: 0;
+			width: 90px;
+}
+
+		.menu ul li a span.out {
+			top: 0px;
+}
+
+		.menu ul li a span.over,
+		.menu ul li a span.bg {
+			/* hide */  
+			top: -40px;
+}
+#menu2 {
+			background: #FFFFFF;		
+}
+		
+#menu2 ul li a {
+			color: #000000;
+}
+
+#menu2 ul li a span.over {
+	color: #FFFFFF;
+	background-color: #00ae66;
+}
